@@ -1,18 +1,21 @@
 const expressAsyncHandler = require('express-async-handler')
 const publicationModel = require('../Models/publicationModel')
+const fs = require('fs/promises') // permet de gerer des fichiers 
 
 
 //Ajouter une publication : 
 exports.ajouterPublication = expressAsyncHandler (async (req, res) => {
     try {
         const {titrePub, Contenu, Sujet} = req.body
-            if(!titrePub || !Contenu || !Sujet) {
-                res.status(400).json('Cette publication néxiste pas')
+        console.log(req.body)
+            if(!titrePub || !Contenu || !Sujet ) {
+                res.status(400).json('Cette publication n éxiste pas')
             }
             await publicationModel.create({
                 titrePub,
                 Contenu,
-                Sujet
+                Sujet,
+                Image: req.file.path
             })
                 res.status(201).json('Publication ajoutée !! ')
 
@@ -45,7 +48,10 @@ exports.supprimerPublication = expressAsyncHandler (async (req,res) => {
         if(!id) {
             res.status(400).json('Publcation n existe pas')
         }
+        const currentPublication = await publicationModel.findById(id)
+        currentPublication.Image && await fs.unlink(currentPublication.Image)
         await publicationModel.findByIdAndDelete(id)
+
         res.status(202).json('Publication supprimé !! ')
     } catch (error) {
         res.status(400)
