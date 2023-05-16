@@ -4,7 +4,6 @@ const expressAsyncHandler = require('express-async-handler')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt') 
 
-
 //Sign token
 const genererToken =(data) => {
     const token = jwt.sign(data, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "10m"})
@@ -88,7 +87,7 @@ exports.refreshAccess = expressAsyncHandler(async (req, res) => {
 
 
 //Logout
-exports.logout = expressAsyncHandler(async (req, res) => {
+exports.seDeconnecter = expressAsyncHandler(async (req, res) => {
     try {
         const { token } = req.body
             if (!token) {

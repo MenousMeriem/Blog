@@ -4,10 +4,14 @@ const ErrorHandler = require('./Middlewares/errorHandler')
 const authenRoute = require('./Routes/authenRoute')
 const utilisateurRoute = require('./Routes/utilisateurRoute')
 const publicationRoute = require('./Routes/publicationRoute')
+const cors = require('cors')
 
 require('dotenv').config()
 
 const index = express()
+index.use(cors({
+    origin: "http://localhost:5173"
+}))
 index.use(express.json())
 index.use(express.urlencoded({extended: true}))
 
@@ -15,7 +19,7 @@ index.use('/SeConnecter', authenRoute)
 index.use('/Utilisateur', utilisateurRoute)
 index.use('/Publication', publicationRoute)
 
-
+    
 index.use('/*', (req,res) => {
     res.status(404).json(' NOT FOUND ! ')
 })

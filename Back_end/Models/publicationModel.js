@@ -15,9 +15,9 @@ const publicationSchema = mongoose.Schema(
             type: String, 
             required: true,
         },
-        Image: {
-            type: String, 
-        }
+        // Image: {
+        //     type: String, 
+        // }
     }
 )
 

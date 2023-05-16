@@ -15,7 +15,7 @@ exports.ajouterPublication = expressAsyncHandler (async (req, res) => {
                 titrePub,
                 Contenu,
                 Sujet,
-                Image: req.file.path
+                // Image: req.file.paths
             })
                 res.status(201).json('Publication ajoutée !! ')
 
