@@ -35,7 +35,7 @@ import {
           <Route path="/PageDetailArticle" element={<PageDetailArticle/>}/> 
           {/* <Route path="/PageDetailProfil" element={<PageDetailProfil/>} /> */}
           <Route path="/Profil" element={<Profil/>}>
-            <Route path="/Profil/Profil" element={<Moncompte/>}/>
+            <Route index element={<Moncompte/>}/>
             <Route path="/Profil/Article" element={<Mesarticles/>}/>  
           </Route>
           <Route path="/Page" element={<Page1/>}/>      

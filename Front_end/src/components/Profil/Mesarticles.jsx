@@ -4,7 +4,8 @@ import {toast} from 'react-toastify'
 import AffArticle from './AffArticle'
 
 function Mesarticles({fetching, setFetching}) {
-    const [data, setData] = useState([])        
+    const [data, setData] = useState([])       
+
     const fetchData = async() => {
         try {
             const reponse = await axios.get('http://localhost:5000/Publication/afficherPublication')
@@ -29,27 +30,28 @@ function Mesarticles({fetching, setFetching}) {
                 [e.target.name]: e.target.value
             }))
         }
-        const postPub = async() => {
-            try {
-               const response =  await axios.post('http://localhost:5000/Publication/ajouterPublication', input)
-                setInput('')
-                if(response.data) {
-                    toast.success('Publication ajouté')
-                }
-            } catch (error) {
-                toast.error(error)
+    const postPub = async() => {
+        try {
+        const response =  await axios.post('http://localhost:5000/Publication/ajouterPublication', input)
+            setInput('')
+            if(response.data) {
+                toast.success('Publication ajouté')
             }
+        } catch (error) {
+            toast.error(error)
         }
-        const onSubmit =(e) => {
-            e.preventDefault()
-            postPub()
-            setInput({
-                titrePub:'',
-                Contenu:'',
-                Sujet:'',
-                Image:'',
-            })
-        }
+    }
+    const onSubmit =(e) => {
+        e.preventDefault()
+        postPub()
+        setInput({
+            titrePub:'',
+            Contenu:'',
+            Sujet:'',
+            Image:'',
+        })
+    }
+    
   return (
     <div>
         <div>

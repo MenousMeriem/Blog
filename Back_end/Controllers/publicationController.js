@@ -32,12 +32,11 @@ exports.modifierPublication = expressAsyncHandler(async (req,res) => {
         if(!id) {
             res.status(400).json('Publication n éxiste pas !!!')
         }
-        await publicationModel.findByIdAndUpdate(id)
+        await publicationModel.findByIdAndUpdate(id, req.body)
         res.status(202).json('Publication modifiée')
     } catch (error) {
         res.status(400)
         console.log(error)
-        
     }
 })
 

@@ -2,7 +2,6 @@ const utilisateurModel = require("../Models/utilisateurModel")
 const bcrypt = require("bcrypt")
 const expressAsyncHandler = require("express-async-handler")
 const jwt = require('jsonwebtoken')
-const refreshTokenModel = require("../Models/refreshTokenModel")
 require('dotenv').config()
 //Fonctions utilitaires
 const genAccessToken = (id) => {
@@ -40,15 +39,9 @@ exports.ajouterUtilisateur = expressAsyncHandler(async (req, res) => {
             mail,
             mot_de_passe: await bcrypt.hash(req.body.mot_de_passe, 10),
         })
-        const refreshToken = genRefreshToken(newUser._id)
-        await refreshTokenModel.create({
-          userId: newUser._id,
-          refreshToken
-        })
         res.status(201).json({
           _id: newUser._id,
           accessToken: genAccessToken(newUser._id),
-          refreshToken,
         })
 
   } catch (error) {

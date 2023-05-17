@@ -11,8 +11,9 @@ exports.protectUtilisateur = expressAsyncHandler(async (req, res, next) => {
             throw new Error("Y pas de token ")
         }
         const user = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
-        const {_id} = user
-        req.user = {_id}
+        console.log(user)
+        const {id} = user
+        req.user = {_id:id}
         next()
     } catch (error) {
         res.status(400)

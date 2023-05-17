@@ -1,7 +1,4 @@
-import React, {useState} from 'react'
 import { Link, Outlet } from 'react-router-dom'
-
-
 
 function Profil() {
     return (
@@ -11,7 +8,7 @@ function Profil() {
                 <div className="drawer-side">
                     <ul className="menu p-4 w-80 bg-rose-900 text-white border-8 border-x-slate-500">
                         {/* <!-- Sidebar content here --> */}
-                        <li><Link to={'/Profil/Profil'}> Mon compte </Link></li>
+                        <li><Link to={'/Profil/'}> Mon compte </Link></li>
                         <li><Link to={'/Profil/Article'}> Mes articles</Link></li>
                     </ul>
                 </div>
